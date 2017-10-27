@@ -10,23 +10,53 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Image newImage = new Image();
+
+        newImage.setCategory("TestCategory");
+        newImage.setDescription("TestDescription");
+        newImage.setFilename("TestFileName");
+        newImage.setPhotographer("TestPhotographer");
+
+        newImage.showDetails();
+
+
         DBConnect.getDBConnection();
 
         try
         {
             Statement s = DBConnect.conn.createStatement();
 
-            s.execute("CREATE TABLE thirdtable (ID INT PRIMARY KEY, NAME VARCHAR(14))");
-            s.execute("INSERT INTO thirdtable VALUES (100,'ONE HUNDRED'),(200,'TWO HUNDRED'),(300,'THREE HUNDRED')");
+            s.execute("DROP TABLE IMAGES");
+
+            s.execute("CREATE TABLE IMAGES (CATEGORY VARCHAR(50), DESCRIPTION VARCHAR(50), FILENAME VARCHAR(50), PHOTOGRAPHER VARCHAR(50))");
 
 
-            ResultSet rs = s.executeQuery("Select * from thirdtable");
+
+            String insertQuery = "INSERT INTO IMAGES VALUES (?, ?, ?, ?)";
+            PreparedStatement pstmt = DBConnect.conn.prepareStatement(insertQuery);
+
+            //data for insert
+
+            String category = newImage.getCategory();
+            String description = newImage.getDescription();
+            String filename = newImage.getFilename();
+            String photographer = newImage.getPhotographer();
+
+            pstmt.setString(1,category);
+            pstmt.setString(2, description);
+            pstmt.setString(3, filename);
+            pstmt.setString(4, photographer);
+
+            int rowAffected = pstmt.executeUpdate();
+            System.out.println(String.format("Row affected %d", rowAffected));
+
+
+            ResultSet rs = s.executeQuery("Select * from IMAGES");
             while (rs.next())
             {
-                System.out.println(rs.getInt("ID") + "\t" + rs.getString("Name"));
+                System.out.println(rs.getString("CATEGORY") + "\t" + rs.getString("DESCRIPTION") + "\t" + rs.getString("FILENAME") + "\t" + rs.getString("PHOTOGRAPHER")  );
             }
 
-            s.execute("DROP TABLE thirdtable");
 
         }
         catch(SQLException sqle){
