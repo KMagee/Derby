@@ -12,12 +12,10 @@ public class Main {
 
         Image newImage = new Image();
 
-        newImage.setCategory("TestCategory");
-        newImage.setDescription("TestDescription");
-        newImage.setFilename("TestFileName");
-        newImage.setPhotographer("TestPhotographer");
-
-        newImage.showDetails();
+        newImage.setCategory("TestCategory6");
+        newImage.setDescription("TestDescription6");
+        newImage.setFilename("TestFileName6");
+        newImage.setPhotographer("TestPhotographer6");
 
 
         DBConnect.getDBConnection();
@@ -26,10 +24,9 @@ public class Main {
         {
             Statement s = DBConnect.conn.createStatement();
 
-            s.execute("DROP TABLE IMAGES");
+            //s.execute("DROP TABLE IMAGES");
 
-            s.execute("CREATE TABLE IMAGES (CATEGORY VARCHAR(50), DESCRIPTION VARCHAR(50), FILENAME VARCHAR(50), PHOTOGRAPHER VARCHAR(50))");
-
+           // s.execute("CREATE TABLE IMAGES (CATEGORY VARCHAR(50), DESCRIPTION VARCHAR(50), FILENAME VARCHAR(50), PHOTOGRAPHER VARCHAR(50))");
 
 
             String insertQuery = "INSERT INTO IMAGES VALUES (?, ?, ?, ?)";
@@ -37,18 +34,13 @@ public class Main {
 
             //data for insert
 
-            String category = newImage.getCategory();
-            String description = newImage.getDescription();
-            String filename = newImage.getFilename();
-            String photographer = newImage.getPhotographer();
+            pstmt.setString(1,newImage.getCategory());
+            pstmt.setString(2, newImage.getDescription());
+            pstmt.setString(3, newImage.getFilename());
+            pstmt.setString(4, newImage.getPhotographer());
 
-            pstmt.setString(1,category);
-            pstmt.setString(2, description);
-            pstmt.setString(3, filename);
-            pstmt.setString(4, photographer);
-
-            int rowAffected = pstmt.executeUpdate();
-            System.out.println(String.format("Row affected %d", rowAffected));
+       int rowAffected = pstmt.executeUpdate();
+//            System.out.println(String.format("Row affected %d", rowAffected));
 
 
             ResultSet rs = s.executeQuery("Select * from IMAGES");

@@ -30,7 +30,7 @@ public class DBConnect {
     }
 
     private DBConnect(){
-        //constructor?
+
     }
 
 }

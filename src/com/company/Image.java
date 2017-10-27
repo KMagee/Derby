@@ -71,6 +71,8 @@ public class Image {
     public void commitToDB(){
 
 
+
+
     }
 
 }
