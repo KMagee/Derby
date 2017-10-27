@@ -1,0 +1,4 @@
+Fri Oct 27 20:31:11 BST 2017 : Could not listen on port 1527 on host localhost:
+ java.net.BindException: Address already in use: JVM_Bind----------------------------------------------------------------
+Fri Oct 27 20:31:38 BST 2017: Shutting down Derby engine
+----------------------------------------------------------------

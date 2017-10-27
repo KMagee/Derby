@@ -2,7 +2,6 @@
   <library name="derbyclient">
     <CLASSES>
       <root url="jar://C:/Program Files/Java/jdk1.8.0_144/db/lib/derbyclient.jar!/" />
-      <root url="jar://C:/db-derby-10.14.1.0-bin/lib/derbyclient.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

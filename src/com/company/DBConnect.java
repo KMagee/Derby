@@ -10,10 +10,10 @@ public class DBConnect {
     static String protocol ="jdbc:derby://localhost:1527/";
 
 
-
-    public static DBConnect getDBConnection(){
+    public static DBConnect getDBConnection (){
         try
         {
+
             // Step 2: Establish the connection to the database
             String url = protocol + DBName +";create=true;";
             conn = DriverManager.getConnection(url);
@@ -29,7 +29,9 @@ public class DBConnect {
             return ourInstance;
     }
 
-    private DBConnect(){
+    private DBConnect() {
+
+
 
     }
 

@@ -24,9 +24,9 @@ public class Main {
         {
             Statement s = DBConnect.conn.createStatement();
 
-            //s.execute("DROP TABLE IMAGES");
+            s.execute("DROP TABLE IMAGES");
 
-           // s.execute("CREATE TABLE IMAGES (CATEGORY VARCHAR(50), DESCRIPTION VARCHAR(50), FILENAME VARCHAR(50), PHOTOGRAPHER VARCHAR(50))");
+           s.execute("CREATE TABLE IMAGES (CATEGORY VARCHAR(50), DESCRIPTION VARCHAR(50), FILENAME VARCHAR(50), PHOTOGRAPHER VARCHAR(50))");
 
 
             String insertQuery = "INSERT INTO IMAGES VALUES (?, ?, ?, ?)";
@@ -39,7 +39,7 @@ public class Main {
             pstmt.setString(3, newImage.getFilename());
             pstmt.setString(4, newImage.getPhotographer());
 
-       int rowAffected = pstmt.executeUpdate();
+           int rowAffected = pstmt.executeUpdate();
 //            System.out.println(String.format("Row affected %d", rowAffected));
 
 
