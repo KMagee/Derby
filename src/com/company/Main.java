@@ -8,24 +8,26 @@ import java.sql.*;
 
 public class Main {
 
-
-
     public static void main(String[] args) {
 
-        Connection conn = DBConnect.getDBConnection();
+        DBConnect.getDBConnection();
 
         try
         {
-            Statement s =  conn.createStatement();
-            s.execute("DROP TABLE SECONDTABLE");
-            s.execute("CREATE TABLE SECONDTABLE (ID INT PRIMARY KEY, NAME VARCHAR(14))");
-            s.execute("INSERT INTO SECONDTABLE VALUES (100,'ONE HUNDRED'),(200,'TWO HUNDRED'),(300,'THREE HUNDRED')");
+            Statement s = DBConnect.conn.createStatement();
 
-            ResultSet rs = s.executeQuery("Select * from SECONDTABLE");
+            s.execute("CREATE TABLE thirdtable (ID INT PRIMARY KEY, NAME VARCHAR(14))");
+            s.execute("INSERT INTO thirdtable VALUES (100,'ONE HUNDRED'),(200,'TWO HUNDRED'),(300,'THREE HUNDRED')");
+
+
+            ResultSet rs = s.executeQuery("Select * from thirdtable");
             while (rs.next())
             {
                 System.out.println(rs.getInt("ID") + "\t" + rs.getString("Name"));
             }
+
+            s.execute("DROP TABLE thirdtable");
+
         }
         catch(SQLException sqle){
             System.err.println(sqle);

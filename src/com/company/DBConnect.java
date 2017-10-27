@@ -3,16 +3,15 @@ package com.company;
 import java.sql.*;
 
 public class DBConnect {
+    private static DBConnect ourInstance = new DBConnect();
 
     static Connection conn = null;
     static String DBName = "FirstDB";
     static String protocol ="jdbc:derby://localhost:1527/";
 
-    private DBConnect(){
-        //constructor?
-    }
 
-    public static Connection getDBConnection(){
+
+    public static DBConnect getDBConnection(){
         try
         {
             // Step 2: Establish the connection to the database
@@ -27,7 +26,11 @@ public class DBConnect {
         } catch (SQLException sqle) {
             System.err.println(sqle);
         }
-            return conn;
+            return ourInstance;
+    }
+
+    private DBConnect(){
+        //constructor?
     }
 
 }
